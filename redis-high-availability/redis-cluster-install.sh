@@ -34,6 +34,7 @@ NODE_INDEX=0
 IP_PREFIX="10.0.0.0"
 LOGGING_KEY="[account-key]"
 REDIS_PORT=6379
+IP_ADDRESS="0.0.0.0"
 CURRENT_DIRECTORY=$(pwd)
 
 ########################################################

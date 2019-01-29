@@ -248,6 +248,7 @@ install_redis()
 configure_redis()
 {
 	# Configure the general settings
+	sed -i "s/^bind ""/bind 0.0.0.0/g' redis.conf
 	sed -i "s/^port.*$/port ${REDIS_PORT}/g" redis.conf
 	sed -i "s/^daemonize no$/daemonize yes/g" redis.conf
 	sed -i 's/^logfile ""/logfile \/var\/log\/redis.log/g' redis.conf

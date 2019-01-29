@@ -249,6 +249,7 @@ install_redis()
 configure_redis()
 {
 	# Configure the general settings
+	sed -i "s/^protected-mode yes$/protected-mode no/g' redis.conf
 	sed -i "s/^bind 127.0.0.1$/bind 0.0.0.0/g' redis.conf
 	sed -i "s/^port.*$/port ${REDIS_PORT}/g" redis.conf
 	sed -i "s/^daemonize no$/daemonize yes/g" redis.conf

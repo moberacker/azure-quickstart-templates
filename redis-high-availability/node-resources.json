@@ -26,12 +26,6 @@
         "Description": "Administrator password used when provisioning virtual machines"
       }
     },
-    "redisPassword": {
-      "type": "securestring",
-      "metadata": {
-        "Description": "Redis passwort"
-      }
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",

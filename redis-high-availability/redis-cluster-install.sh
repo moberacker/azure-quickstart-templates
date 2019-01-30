@@ -36,6 +36,7 @@ LOGGING_KEY="[account-key]"
 REDIS_PORT=6379
 IP_ADDRESS="0.0.0.0"
 CURRENT_DIRECTORY=$(pwd)
+REDIS_PASS="[redis-pass]"
 
 ########################################################
 # This script will install Redis from sources
@@ -47,11 +48,12 @@ help()
 	echo "-n Cluster name"
 	echo "-v Redis package version"
 	echo "-c Number of instances"
-	echo "-s Number of master nodes"	
+	echo "-m Number of master nodes"	
 	echo "-s Number of slave nodes"
 	echo "-i Sequential node index (starting from 0)"
 	echo "-p Private IP address prefix"
 	echo "-l (Indicator of the last node)"
+	echo "-x Redis passwort"
 	echo "-h Help"
 }
 
@@ -99,10 +101,13 @@ while getopts :n:v:c:m:s:i:p:lh optname; do
 	p) # Private IP address prefix
 		IP_PREFIX=${OPTARG}
 		;;			
-    l)  # Indicator of the last node
+    	l)  # Indicator of the last node
 		IS_LAST_NODE=1
+		;;		   
+	x)  # Redis passwort
+		REDIS_PASS=${OPTARG}
 		;;		
-    h)  # Helpful hints
+    	h)  # Helpful hints
 		help
 		exit 2
 		;;
@@ -257,7 +262,7 @@ configure_redis()
 	#sed -i "s/^logfile stdout$/logfile \/var\/log\/redis.log/g" redis.conf
 	sed -i "s/^loglevel verbose$/loglevel notice/g" redis.conf
 	sed -i "s/^dir \.\//dir \/var\/redis\//g" redis.conf 
-	echo "requirepass w+03HKbDaApcMQOw0QmBQSklrbJ24O4RR4knpcMNyd0=" >> redis.conf
+	echo "requirepass ${REDIS_PASS}" >> redis.conf
 	sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
 	sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
 	

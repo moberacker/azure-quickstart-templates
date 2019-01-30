@@ -20,9 +20,9 @@ The following table outlines the VM characteristics for each supported t-shirt s
 
 | T-Shirt Size | VM Size | CPU Cores | Memory | # of Masters | # of Slaves | Total # of Nodes |
 |:--- |:---|:---|:---|:---|:---|:---|
-| Small | Standard_A1 | 1 | 1.75 GB | 3 | 0 | 3 |
-| Medium | Standard_A2 | 2 | 3.5 GB | 3 | 3 | 6 |
-| Large | Standard_A5 | 2 | 14 GB | 3 | 6 | 9 |
+| Small | Standard_A1 | 1 | 1.75 GB | 1 | 2 | 3 |
+| Medium | Standard_A2 | 2 | 3.5 GB | 1 | 2 | 3 |
+| Large | Standard_B8ms | 8 | 32 GB | 1 | 2 | 3 |
 
 In addition, some critical memory- and network-specific optimizations are applied to ensure the optimal performance and throughput.
 

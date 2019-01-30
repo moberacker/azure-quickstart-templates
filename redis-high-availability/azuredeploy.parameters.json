@@ -34,6 +34,9 @@
     },
     "tshirtSize": {
       "value": "Small"
+    },
+    "redisPassword": {
+      "value": "GEN-PASSWORD"
     }
   }
 }

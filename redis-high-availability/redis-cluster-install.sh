@@ -37,6 +37,7 @@ REDIS_PORT=6379
 IP_ADDRESS="0.0.0.0"
 CURRENT_DIRECTORY=$(pwd)
 REDIS_PASS="[redis-pass]"
+REDIS_PUBLIC_IP="[redis-public-ip]"
 
 ########################################################
 # This script will install Redis from sources
@@ -52,8 +53,9 @@ help()
 	echo "-s Number of slave nodes"
 	echo "-i Sequential node index (starting from 0)"
 	echo "-p Private IP address prefix"
-	echo "-l (Indicator of the last node)"
 	echo "-x Redis passwort"
+	echo "-z Redis public ip"
+	echo "-l (Indicator of the last node)"
 	echo "-h Help"
 }
 
@@ -75,7 +77,7 @@ then
 fi
 
 # Parse script parameters
-while getopts :n:v:c:m:s:i:p:x:lh optname; do
+while getopts :n:v:c:m:s:i:p:x:z:lh optname; do
   log "Option $optname set with value ${OPTARG}"
   
   case $optname in
@@ -103,6 +105,9 @@ while getopts :n:v:c:m:s:i:p:x:lh optname; do
 		;;			
 	x)  # Redis passwort
 		REDIS_PASS=${OPTARG}
+		;;		
+	x)  # Redis public ip
+		REDIS_PUBLIC_IP=${OPTARG}
 		;;		
     	l)  # Indicator of the last node
 		IS_LAST_NODE=1

@@ -98,26 +98,26 @@
     "_comment0": "/* T-shirt sizes may vary for different reasons, and some customers may want to modify these - so feel free to go ahead and define your favorite t-shirts */",
     "tshirtSizeSmall": {
       "vmSizeMember": "Standard_A1",
-      "numberOfMasters": 3,
-      "numberOfSlaves": 0,
+      "numberOfMasters": 1,
+      "numberOfSlaves": 2,
       "totalMemberCount": 3,
       "totalMemberCountExcludingLast": 2,
       "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
     },
     "tshirtSizeMedium": {
       "vmSizeMember": "Standard_A2",
-      "numberOfMasters": 3,
-      "numberOfSlaves": 3,
-      "totalMemberCount": 6,
-      "totalMemberCountExcludingLast": 5,
+      "numberOfMasters": 1,
+      "numberOfSlaves": 2,
+      "totalMemberCount": 3,
+      "totalMemberCountExcludingLast": 2,
       "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
     },
     "tshirtSizeLarge": {
       "vmSizeMember": "Standard_A5",
-      "numberOfMasters": 3,
-      "numberOfSlaves": 6,
-      "totalMemberCount": 9,
-      "totalMemberCountExcludingLast": 8,
+      "numberOfMasters": 1,
+      "numberOfSlaves": 2,
+      "totalMemberCount": 3,
+      "totalMemberCountExcludingLast": 2,
       "arbiter": "Enabled",
       "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
     },

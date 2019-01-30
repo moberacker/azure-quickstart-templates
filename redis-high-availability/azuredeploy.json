@@ -113,7 +113,7 @@
       "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
     },
     "tshirtSizeLarge": {
-      "vmSizeMember": "Standard_A5",
+      "vmSizeMember": "Standard_B8ms",
       "numberOfMasters": 1,
       "numberOfSlaves": 2,
       "totalMemberCount": 3,

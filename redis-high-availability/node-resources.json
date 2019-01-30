@@ -70,7 +70,7 @@
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('Microsoft.Network/publicIPAddresses/', 'pipMember', parameters('machineSettings').machineIndex))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]"
               },
               "subnet": {
                 "id": "[parameters('networkSettings').subnetRef]"

@@ -36,11 +36,23 @@
   },
   "variables": {},
   "resources": [
+     {
+      "apiVersion": "2015-05-01-preview",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat('pipMember', parameters('machineSettings').machineIndex)]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
     {
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat('nicMember', parameters('machineSettings').machineIndex)]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
+       "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', 'pipMember', parameters('machineSettings').machineIndex)]"
+      ],
       "properties": {
         "ipConfigurations": [
           {
@@ -48,6 +60,18 @@
             "properties": {
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
+              "subnet": {
+                "id": "[parameters('networkSettings').subnetRef]"
+              }
+            }
+          },
+          {
+            "name": "ipConfigPublic",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('Microsoft.Network/publicIPAddresses/', 'pipMember', parameters('machineSettings').machineIndex))]"
+              },
               "subnet": {
                 "id": "[parameters('networkSettings').subnetRef]"
               }

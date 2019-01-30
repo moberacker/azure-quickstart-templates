@@ -296,10 +296,10 @@ configure_redis()
 	update-rc.d redis-server defaults
 	
 	# Configure firewall
-	ufw allow 6379
-	ufw allow 6379/tcp
-	ufw allow 26379
-	ufw allow 26379/tcp
+	sudo ufw allow 6379
+	sudo ufw allow 6379/tcp
+	sudo ufw allow 26379
+	sudo ufw allow 26379/tcp
 	
 	log "Redis service was created successfully"	
 }

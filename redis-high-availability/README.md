@@ -23,6 +23,9 @@ The following table outlines the VM characteristics for each supported t-shirt s
 | Small | Standard_A1 | 1 | 1.75 GB | 1 | 2 | 3 |
 | Medium | Standard_A2 | 2 | 3.5 GB | 1 | 2 | 3 |
 | Large | Standard_B8ms | 8 | 32 GB | 1 | 2 | 3 |
+| XLarge | Standard_D8s_v3 | 8 | 32 GB | 1 | 2 | 3 |
+
+
 
 In addition, some critical memory- and network-specific optimizations are applied to ensure the optimal performance and throughput.
 

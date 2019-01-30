@@ -58,6 +58,7 @@
           {
             "name": "ipconfig1",
             "properties": {
+              "primary" = false,
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
               "subnet": {
@@ -68,6 +69,7 @@
           {
             "name": "ipConfigPublic",
             "properties": {
+              "primary" = true,
               "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]"

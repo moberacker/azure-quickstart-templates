@@ -126,9 +126,18 @@
       "totalMemberCountExcludingLast": 2,
       "arbiter": "Enabled",
       "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
-    },,
+    },
     "tshirtSizeXLarge": {
       "vmSizeMember": "Standard_D8s_v3",
+      "numberOfMasters": 1,
+      "numberOfSlaves": 2,
+      "totalMemberCount": 3,
+      "totalMemberCountExcludingLast": 2,
+      "arbiter": "Enabled",
+      "vmTemplate": "[concat(variables('templateBaseUrl'), 'node-resources.json')]"
+    },
+    "tshirtSizeXXLarge": {
+      "vmSizeMember": "Standard_D16s_v3",
       "numberOfMasters": 1,
       "numberOfSlaves": 2,
       "totalMemberCount": 3,

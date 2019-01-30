@@ -258,7 +258,8 @@ configure_redis()
 	sed -i "s/^loglevel verbose$/loglevel notice/g" redis.conf
 	sed -i "s/^dir \.\//dir \/var\/redis\//g" redis.conf 
 	sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
-	sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script 
+	sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
+	echo "requirepass w+03HKbDaApcMQOw0QmBQSklrbJ24O4RR4knpcMNyd0=" >> redis.conf
 	
 	# Configure the sentinel bits
 	echo "daemonize yes" >> sentinel.conf

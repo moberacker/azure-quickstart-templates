@@ -160,7 +160,7 @@
       }
     },
     "clusterSpec": "[variables(concat('tshirtSize', parameters('tshirtSize')))]",
-    "installCommand": "[concat('redis-cluster-install.sh -n ', parameters('redisClusterName'), ' -v ', parameters('redisVersion'), ' -c ', variables('clusterSpec').totalMemberCount, ' -m ', variables('clusterSpec').numberOfMasters, ' -s ', variables('clusterSpec').numberOfSlaves, ' -p ', variables('networkSettings').machineIpPrefix)]",
+    "installCommand": "[concat('redis-cluster-install.sh -n ', parameters('redisClusterName'), ' -v ', parameters('redisVersion'), ' -c ', variables('clusterSpec').totalMemberCount, ' -m ', variables('clusterSpec').numberOfMasters, ' -s ', variables('clusterSpec').numberOfSlaves, ' -p ', variables('networkSettings').machineIpPrefix, ' -x ', parameters('redisPassword'))]",
     "vmScripts": {
       "scriptsToDownload": [
         "[concat(variables('scriptUrl'), 'redis-cluster-install.sh')]",
@@ -258,9 +258,6 @@
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
-          },
-          "redisPassword": {
-            "value": "[parameters('redisPassword')]"
           }
         }
       }
@@ -298,9 +295,6 @@
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
-          },
-          "redisPassword": {
-            "value": "[parameters('redisPassword')]"
           }
         }
       }

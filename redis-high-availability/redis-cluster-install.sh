@@ -295,6 +295,12 @@ configure_redis()
 	# Start the script automatically at boot time
 	update-rc.d redis-server defaults
 	
+	# Configure firewall
+	ufw allow 6379
+	ufw allow 6379/tcp
+	ufw allow 26379
+	ufw allow 26379/tcp
+	
 	log "Redis service was created successfully"	
 }
 

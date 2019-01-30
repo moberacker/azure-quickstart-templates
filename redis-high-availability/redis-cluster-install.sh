@@ -75,7 +75,7 @@ then
 fi
 
 # Parse script parameters
-while getopts :n:v:c:m:s:i:p:lh optname; do
+while getopts :n:v:c:m:s:i:p:x:lh optname; do
   log "Option $optname set with value ${OPTARG}"
   
   case $optname in
@@ -101,12 +101,12 @@ while getopts :n:v:c:m:s:i:p:lh optname; do
 	p) # Private IP address prefix
 		IP_PREFIX=${OPTARG}
 		;;			
-    	l)  # Indicator of the last node
-		IS_LAST_NODE=1
-		;;		   
 	x)  # Redis passwort
 		REDIS_PASS=${OPTARG}
 		;;		
+    	l)  # Indicator of the last node
+		IS_LAST_NODE=1
+		;;		   
     	h)  # Helpful hints
 		help
 		exit 2

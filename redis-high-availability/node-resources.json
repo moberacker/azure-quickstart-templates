@@ -138,5 +138,11 @@
         }
       }
     }
-  ]
+  ],
+    "outputs": {
+        "resourceID": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))]"
+        }
+    }
 }

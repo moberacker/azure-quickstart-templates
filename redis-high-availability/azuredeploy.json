@@ -258,6 +258,9 @@
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
+          },
+          "redisPassword": {
+            "value": "[parameters('redisPassword')]"
           }
         }
       }
@@ -295,6 +298,9 @@
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
+          },
+          "redisPassword": {
+            "value": "[parameters('redisPassword')]"
           }
         }
       }

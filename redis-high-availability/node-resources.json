@@ -90,6 +90,9 @@
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', 'nicMember', parameters('machineSettings').machineIndex)]"
       ],
+      "tags": { 
+	  		"PublicIP": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[1]]"  	  
+      },
       "properties": {
         "availabilitySet": {
           "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('commonSettings').availabilitySetName)]"
@@ -134,7 +137,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
-          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, ' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0])]"
+          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, ' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[1])]"
         }
       }
     }

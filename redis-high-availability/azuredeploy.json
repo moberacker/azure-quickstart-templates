@@ -124,7 +124,7 @@
     "osFamilyUbuntu": {
       "imagePublisher": "Canonical",
       "imageOffer": "UbuntuServer",
-      "imageSKU": "14.04.5-LTS"
+      "imageSKU": "18.04-LTS"
     },
     "scriptUrl": "https://raw.githubusercontent.com/moberacker/azure-quickstart-templates/master/redis-high-availability/",
     "templateBaseUrl": "[variables('scriptUrl')]",

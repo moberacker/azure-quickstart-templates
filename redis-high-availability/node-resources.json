@@ -134,7 +134,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
-          "commandToExecute": "[parameters('machineSettings').commandToExecute]"
+          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, ' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0])]"
         }
       }
     }

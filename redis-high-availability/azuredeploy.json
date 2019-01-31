@@ -56,17 +56,6 @@
         "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
       }
     },
-    "jumpbox": {
-      "type": "string",
-      "defaultValue": "Disabled",
-      "allowedValues": [
-        "Enabled",
-        "Disabled"
-      ],
-      "metadata": {
-        "description": "The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the Redis nodes"
-      }
-    },
     "tshirtSize": {
       "type": "string",
       "defaultValue": "Large",
@@ -156,10 +145,7 @@
     },
     "scriptUrl": "https://raw.githubusercontent.com/moberacker/azure-quickstart-templates/master/redis-high-availability/",
     "templateBaseUrl": "[variables('scriptUrl')]",
-    "jumpboxTemplateEnabled": "jumpbox-resources.json",
-    "jumpboxTemplateDisabled": "empty-resources.json",
     "sharedTemplateUrl": "[concat(variables('templateBaseUrl'), 'shared-resources.json')]",
-    "jumpboxTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('jumpboxTemplate', parameters('jumpbox'))))]",
     "commonSettings": {
       "availabilitySetName": "redisAvailSet"
     },

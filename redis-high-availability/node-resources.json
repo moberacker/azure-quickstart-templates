@@ -64,7 +64,10 @@
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]"
+              	"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]",
+		"properties": {
+              		"publicIPAllocationMethod": "Static",
+		}
               },
               "subnet": {
                 "id": "[parameters('networkSettings').subnetRef]"

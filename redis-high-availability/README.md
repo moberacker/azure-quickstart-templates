@@ -7,14 +7,13 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template deploys a Redis cluster on the Ubuntu virtual machines. This template also provisions a storage account, virtual network, availability sets, public IP addresses and network interfaces required by the installation.
-The template also creates 1 publicly accessible VM acting as a "jumpbox" and allowing to ssh into the Redis nodes for diagnostics or troubleshooting purposes.
+This template deploys a Redis cluster on the Ubuntu virtual machines. This template also provisions a storage account, virtual network, availability sets, private/public IP addresses and network interfaces required by the installation.
 
 Topology
 --------
 
 The deployment topology is comprised of _numberOfInstances_ nodes running in the cluster mode.
-The AOF persistence is enabled by default, whereas the RDB persistence is tuned to perform less-frequent dumps (once every 60 minutes). For more details on Redis persistence options, please refer to the [official documentation](http://redis.io/topics/persistence).
+The AOF persistence is enabled by default (if cluster mode is enabled), whereas the RDB persistence is tuned to perform less-frequent dumps (once every 60 minutes). For more details on Redis persistence options, please refer to the [official documentation](http://redis.io/topics/persistence).
 
 The following table outlines the VM characteristics for each supported t-shirt size:
 
@@ -28,7 +27,7 @@ The following table outlines the VM characteristics for each supported t-shirt s
 
 In addition, some critical memory- and network-specific optimizations are applied to ensure the optimal performance and throughput.
 
-NOTE: To access the individual Redis nodes, you need to enable and use the publicly accessible jumpbox VM and ssh from it into the Redis instances.
+NOTE: To access the individual Redis nodes remotely, you need to use the depending public IP of each Redis instances.
 
 ##Known Issues and Limitations
 - SSH key is not yet implemented and the template currently takes a password for the admin user

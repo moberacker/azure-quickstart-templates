@@ -83,7 +83,7 @@
         "[concat('Microsoft.Network/networkInterfaces/', 'nicMember', parameters('machineSettings').machineIndex)]"
       ],
       "tags": { 
-	 "PublicIP": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]]"  	  
+	 "publicIP": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]"  	  
       },
       "properties": {
         "availabilitySet": {
@@ -130,15 +130,19 @@
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
           "commandToExecute": "[concat(parameters('machineSettings').commandToExecute)]"
-          //"commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), variables('empty_string')))]"
+          //"commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress), variables('empty_string')))]"
         }
       }
     }
   ],
     "outputs": {
-        "resourceID": {
+        "publicIP": {
             "type": "string",
-            "value": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]]"
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]"
+        },
+	"privateIP": {
+            "type": "string",
+            "value": "[reference(concat('nicMember', parameters('machineSettings').machineIndex)).ipConfigurations[0].properties.privateIPAddress]"
         }
     }
 }

@@ -101,6 +101,7 @@
     }
   },
   "variables": {
+    "empty_string": "",
     "_comment0": "/* T-shirt sizes may vary for different reasons, and some customers may want to modify these - so feel free to go ahead and define your favorite t-shirts */",
     "tshirtSizeSmall": {
       "vmSizeMember": "Standard_A1",
@@ -271,7 +272,7 @@
               "vmSize": "[variables('clusterSpec').vmSizeMember]",
               "machineIndex": "[copyindex()]",
               "vmScripts": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex(), if(equals(copyindex(),0), json('null'), concat(' -z ', reference('[concat(''node-resources'', copyindex())]').outputs.resourceID.value[0])))]"
+              "commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex(), if(equals(copyindex(),0), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', copyindex())]').outputs.resourceID.value[0])))]"
             }
           },
           "adminPassword": {

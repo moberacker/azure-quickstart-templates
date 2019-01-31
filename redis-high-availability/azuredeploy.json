@@ -68,11 +68,13 @@
     },
     "tshirtSize": {
       "type": "string",
-      "defaultValue": "Small",
+      "defaultValue": "Large",
       "allowedValues": [
         "Small",
         "Medium",
-        "Large"
+        "Large",
+        "XLarge",
+        "XXLarge"
       ],
       "metadata": {
         "description": "T-shirt size of the Redis deployment"
@@ -272,7 +274,8 @@
               "vmSize": "[variables('clusterSpec').vmSizeMember]",
               "machineIndex": "[copyindex()]",
               "vmScripts": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex(), if(equals(copyindex(),0), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', copyindex())]').outputs.resourceID.value[0])))]"
+              "commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex())]"
+              //"commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex(), if(equals(copyindex(),0), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', copyindex())]').outputs.resourceID.value[0])))]"
             }
           },
           "adminPassword": {
@@ -309,7 +312,8 @@
               "vmSize": "[variables('clusterSpec').vmSizeMember]",
               "machineIndex": "[variables('clusterSpec').totalMemberCountExcludingLast]",
               "vmScripts": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat(variables('vmScripts').setupCommand, ' -i ', variables('clusterSpec').totalMemberCountExcludingLast, if(empty(reference('[concat(''node-resources'', 0)]')), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', 0)]').outputs.resourceID.value[0])))]"
+              "commandToExecute": "[concat(variables('vmScripts').setupCommand, ' -i ', variables('clusterSpec').totalMemberCountExcludingLast)]"
+              //"commandToExecute": "[concat(variables('vmScripts').setupCommand, ' -i ', variables('clusterSpec').totalMemberCountExcludingLast, if(empty(reference('[concat(''node-resources'', 0)]')), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', 0)]').outputs.resourceID.value[0])))]"
             }
           },
           "adminPassword": {

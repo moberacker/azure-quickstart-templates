@@ -22,7 +22,62 @@
       }
     }
   },
+  "variables": {
+    "securityGroupName": "redisClusterNSG"
+  },
   "resources": [
+    {
+      "apiVersion": "2015-05-01-preview",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('securityGroupName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "SSH",
+            "properties": {
+              "description": "Allows SSH traffic",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "22",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 100,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "REDIS",
+            "properties": {
+              "description": "Allows Redis traffic",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "6379",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 200,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "SENTINEL",
+            "properties": {
+              "description": "Allows Sentinel traffic",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "26379",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 220,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
     {
       "apiVersion": "2017-12-01",
       "type": "Microsoft.Compute/availabilitySets",

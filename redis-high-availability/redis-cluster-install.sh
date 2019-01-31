@@ -268,8 +268,8 @@ configure_redis()
 	sed -i "s/^loglevel verbose$/loglevel notice/g" redis.conf
 	sed -i "s/^dir \.\//dir \/var\/redis\//g" redis.conf 
 	echo "requirepass ${REDIS_PASS}" >> redis.conf
-	sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
-	sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
+	#sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
+	#sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
 	
 	# Configure the sentinel bits
 	echo "bind 0.0.0.0" >> sentinel.conf

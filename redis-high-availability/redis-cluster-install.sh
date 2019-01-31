@@ -368,7 +368,7 @@ configure_sentinel()
 	MASTER_NODE_IP="${IP_PREFIX}${MASTER_NODE_INDEX}"
 
 	# Patch the sentinel configuration file with a new master
-	sed -i "s/^sentinel monitor.*$/sentinel monitor mymaster ${REDIS_PUBLIC_IP} ${REDIS_PORT} ${MASTER_NODE_COUNT}/g" /etc/redis/sentinel.conf
+	sed -i "s/^sentinel monitor.*$/sentinel monitor mymaster ${MASTER_NODE_IP} ${REDIS_PORT} ${MASTER_NODE_COUNT}/g" /etc/redis/sentinel.conf
 
 	# Make a writable log file
 	touch /var/log/redis-sentinel.log

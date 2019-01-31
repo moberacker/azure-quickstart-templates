@@ -38,6 +38,7 @@ IP_ADDRESS="0.0.0.0"
 CURRENT_DIRECTORY=$(pwd)
 REDIS_PASS="[redis-pass]"
 REDIS_PUBLIC_IP="[redis-public-ip]"
+REDIS_MAXMEM_POLICY="allkeys-lru"
 
 ########################################################
 # This script will install Redis from sources
@@ -54,6 +55,7 @@ help()
 	echo "-i Sequential node index (starting from 0)"
 	echo "-p Private IP address prefix"
 	echo "-x Redis passwort"
+	echo "-y Redis maxmemory-policy (default allkeys-lru)"
 	echo "-z Redis public ip"
 	echo "-l (Indicator of the last node)"
 	echo "-h Help"
@@ -77,7 +79,7 @@ then
 fi
 
 # Parse script parameters
-while getopts :n:v:c:m:s:i:p:x:z:lh optname; do
+while getopts :n:v:c:m:s:i:p:x:y:z:lh optname; do
   log "Option $optname set with value ${OPTARG}"
   
   case $optname in
@@ -106,7 +108,10 @@ while getopts :n:v:c:m:s:i:p:x:z:lh optname; do
 	x)  # Redis passwort
 		REDIS_PASS=${OPTARG}
 		;;		
-	x)  # Redis public ip
+	y)  # Redis maxmemory-policy (default allkeys-lru)
+		REDIS_MAXMEM_POLICY=${OPTARG}
+		;;		
+	z)  # Redis public ip
 		REDIS_PUBLIC_IP=${OPTARG}
 		;;		
     	l)  # Indicator of the last node
@@ -268,6 +273,7 @@ configure_redis()
 	sed -i "s/^loglevel verbose$/loglevel notice/g" redis.conf
 	sed -i "s/^dir \.\//dir \/var\/redis\//g" redis.conf 
 	echo "requirepass ${REDIS_PASS}" >> redis.conf
+	echo "maxmemory-policy ${REDIS_MAXMEM_POLICY}" >> redis.conf
 	#sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
 	#sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
 	

@@ -58,19 +58,9 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "primary": false,
+              "primary": true,
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
-              "subnet": {
-                "id": "[parameters('networkSettings').subnetRef]"
-              }
-            }
-          },
-          {
-            "name": "ipConfigPublic",
-            "properties": {
-              "primary": true,
-              "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]"
               },
@@ -137,7 +127,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
-          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[1]), json('null')))]"
+          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), json('null')))]"
         }
       }
     }

@@ -83,7 +83,7 @@
         "[concat('Microsoft.Network/networkInterfaces/', 'nicMember', parameters('machineSettings').machineIndex)]"
       ],
       "tags": { 
-	  		"PublicIP": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[1]]"  	  
+	 "PublicIP": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]]"  	  
       },
       "properties": {
         "availabilitySet": {
@@ -129,7 +129,8 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
-          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), variables('empty_string')))]"
+          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute)]"
+          //"commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), variables('empty_string')))]"
         }
       }
     }
@@ -137,7 +138,7 @@
     "outputs": {
         "resourceID": {
             "type": "string",
-            "value": "[c]"
+            "value": "[resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]]"
         }
     }
 }

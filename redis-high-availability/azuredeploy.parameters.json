@@ -29,9 +29,6 @@
     "redisClusterName": {
       "value": "redis-arm-cluster"
     },
-    "jumpbox": {
-      "value": "Enabled"
-    },
     "tshirtSize": {
       "value": "Large"
     },

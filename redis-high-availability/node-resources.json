@@ -54,8 +54,7 @@
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
        "dependsOn": [
-       	"[concat('Microsoft.Network/publicIPAddresses/', 'pipMember', parameters('machineSettings').machineIndex)]",
-        "[concat('Microsoft.Network/networkSecurityGroups/', variables('securityGroupName'))]"
+       	"[concat('Microsoft.Network/publicIPAddresses/', 'pipMember', parameters('machineSettings').machineIndex)]"
       ],
       "properties": {
         "ipConfigurations": [

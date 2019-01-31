@@ -35,7 +35,8 @@
     }
   },
   "variables": {
-  	"empty_string": ""
+  	"empty_string": "",
+	"securityGroupName": "redisClusterNSG"
   },
   "resources": [
      {
@@ -71,7 +72,10 @@
               }
             }
           }
-        ]
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('securityGroupName'))]"
+        }
       }
     },
     {

@@ -27,7 +27,7 @@ The following table outlines the VM characteristics for each supported t-shirt s
 
 In addition, some critical memory- and network-specific optimizations are applied to ensure the optimal performance and throughput.
 
-NOTE: To access the individual Redis nodes remotely, you need to use the depending public IP of each Redis instances.
+NOTE: To access the individual Redis nodes remotely, you need to use the depending public IP and auth password (template parameter redisPassword) of each Redis instances.
 
 ##Known Issues and Limitations
 - SSH key is not yet implemented and the template currently takes a password for the admin user

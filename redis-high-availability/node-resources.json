@@ -34,7 +34,9 @@
       }
     }
   },
-  "variables": {},
+  "variables": {
+  	"empty_string": ""
+  },
   "resources": [
      {
       "apiVersion": "2015-05-01-preview",
@@ -127,7 +129,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
-          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), json('null')))]"
+          "commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', resourceId('Microsoft.Network/publicIPAddresses', concat('nicMember', parameters('machineSettings').machineIndex))[0]), variables('empty_string')))]"
         }
       }
     }

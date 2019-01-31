@@ -83,7 +83,8 @@
         "[concat('Microsoft.Network/networkInterfaces/', 'nicMember', parameters('machineSettings').machineIndex)]"
       ],
       "tags": { 
-	 "publicIP": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]"  	  
+	 "publicIP": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]",  	  
+	 "privateIP": "[reference(concat('nicMember', parameters('machineSettings').machineIndex)).ipConfigurations[0].properties.privateIPAddress]"  	  
       },
       "properties": {
         "availabilitySet": {

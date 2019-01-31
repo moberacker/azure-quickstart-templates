@@ -44,7 +44,7 @@
       "name": "[concat('pipMember', parameters('machineSettings').machineIndex)]",
       "location": "[parameters('location')]",
       "properties": {
-        "publicIPAllocationMethod": "Dynamic"
+        "publicIPAllocationMethod": "Static"
       }
     },
     {
@@ -64,10 +64,7 @@
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
               "publicIPAddress": {
-              	"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]",
-		"properties": {
-              		"publicIPAllocationMethod": "Static",
-		}
+              	"id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('pipMember', parameters('machineSettings').machineIndex))]"
               },
               "subnet": {
                 "id": "[parameters('networkSettings').subnetRef]"

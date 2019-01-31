@@ -274,6 +274,11 @@ configure_redis()
 	sed -i "s/^dir \.\//dir \/var\/redis\//g" redis.conf 
 	echo "requirepass ${REDIS_PASS}" >> redis.conf
 	echo "maxmemory-policy ${REDIS_MAXMEM_POLICY}" >> redis.conf
+	
+	#get_vm_memory REDIS_MAX_MEMORY_TEMP
+	#REDIS_MAX_MEMORY=$(expr $REDIS_MAX_MEMORY_TEMP - 10000000)
+	#echo "maxmemory ${REDIS_MAX_MEMORY}" >> redis.conf
+	
 	#sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
 	#sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
 	
@@ -396,12 +401,27 @@ start_redis()
 	log "Redis daemon was started successfully"
 }
 
+#############################################################################
 start_sentinel()
 {
 	# Start the Redis sentinel daemon
 	/etc/init.d/redis-sentinel start
 	log "Redis sentinel daemon was started successfully"
 }
+
+#############################################################################
+get_vm_memory()
+{
+  local  __resultvar=$1
+  local result=$(python -c "import os;print int(round(os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES') ))")
+  eval $__resultvar=${result}	
+} 
+
+#sample usage:
+# get_vm_memory mem
+# echo ${mem}
+
+#############################################################################
 
 # Step1
 tune_system

@@ -374,6 +374,7 @@ configure_redis_replication()
 		MASTER_NODE_IP="${IP_PREFIX}${MASTER_NODE_INDEX}"
 		
 		echo "slaveof ${MASTER_NODE_IP} ${REDIS_PORT}" >> /etc/redis/redis.conf
+		echo "masterauth ${REDIS_PASS}" >> /etc/redis/redis.conf
 		log "Redis node ${HOSTNAME} is configured as a SLAVE of ${MASTER_NODE_IP}:${REDIS_PORT}"
 	fi
 }

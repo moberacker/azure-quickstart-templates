@@ -32,11 +32,10 @@
       "metadata": {
         "description": "Location for all resources."
       }
-    },
-    "securityGroupName": {
-      "type": "string",
-      "defaultValue": "redisClusterNSG"
     }
+  },
+  "variables": {
+    "securityGroupName": "redisClusterNSG"
   },
   "resources": [
      {
@@ -74,7 +73,7 @@
           }
         ],
         "networkSecurityGroup": {
-          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('securityGroupName'))]"
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('securityGroupName'))]"
         }
       }
     },

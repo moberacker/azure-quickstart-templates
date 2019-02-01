@@ -240,7 +240,6 @@
               "machineIndex": "[copyindex()]",
               "vmScripts": "[variables('vmScripts').scriptsToDownload]",
               "commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex())]"
-              //"commandToExecute": "[concat(variables('vmScripts').installCommand, ' -i ', copyindex(), if(equals(copyindex(),0), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', copyindex())]').outputs.publicIP.value)))]"
             }
           },
           "adminPassword": {
@@ -278,7 +277,6 @@
               "machineIndex": "[variables('clusterSpec').totalMemberCountExcludingLast]",
               "vmScripts": "[variables('vmScripts').scriptsToDownload]",
               "commandToExecute": "[concat(variables('vmScripts').setupCommand, ' -i ', variables('clusterSpec').totalMemberCountExcludingLast)]"
-              //"commandToExecute": "[concat(variables('vmScripts').setupCommand, ' -i ', variables('clusterSpec').totalMemberCountExcludingLast, if(empty(reference('[concat(''node-resources'', 0)]')), variables('empty_string'), concat(' -z ', reference('[concat(''node-resources'', 0)]').outputs.publicIP.value)))]"
             }
           },
           "adminPassword": {

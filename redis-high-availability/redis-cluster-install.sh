@@ -39,6 +39,7 @@ CURRENT_DIRECTORY=$(pwd)
 REDIS_PASS="[redis-pass]"
 REDIS_PUBLIC_IP="[redis-public-ip]"
 REDIS_MAXMEM_POLICY="allkeys-lru"
+REDIS_MAXMEM=6000000000
 
 ########################################################
 # This script will install Redis from sources
@@ -56,6 +57,7 @@ help()
 	echo "-p Private IP address prefix"
 	echo "-x Redis passwort"
 	echo "-y Redis maxmemory-policy (default allkeys-lru)"
+	echo "-u Redis maxmemory bytes (default 6GB - 6000000000 bytes)"
 	echo "-z Redis public ip"
 	echo "-l (Indicator of the last node)"
 	echo "-h Help"
@@ -79,7 +81,7 @@ then
 fi
 
 # Parse script parameters
-while getopts :n:v:c:m:s:i:p:x:y:z:lh optname; do
+while getopts :n:v:c:m:s:i:p:x:y:u:z:lh optname; do
   log "Option $optname set with value ${OPTARG}"
   
   case $optname in
@@ -110,6 +112,9 @@ while getopts :n:v:c:m:s:i:p:x:y:z:lh optname; do
 		;;		
 	y)  # Redis maxmemory-policy (default allkeys-lru)
 		REDIS_MAXMEM_POLICY=${OPTARG}
+		;;		
+	u)  # Redis maxmemory bytes (default 6GB - 6000000000 bytes)
+		REDIS_MAXMEM=${OPTARG}
 		;;		
 	z)  # Redis public ip
 		REDIS_PUBLIC_IP=${OPTARG}
@@ -278,6 +283,7 @@ configure_redis()
 	#get_vm_memory REDIS_MAX_MEMORY_TEMP
 	#REDIS_MAX_MEMORY=$(expr $REDIS_MAX_MEMORY_TEMP - 10000000)
 	#echo "maxmemory ${REDIS_MAX_MEMORY}" >> redis.conf
+	echo "maxmemory ${REDIS_MAXMEM}" >> redis.conf
 	
 	sed -i "s/\${REDISPORT}.conf$/redis.conf/g" utils/redis_init_script 
 	sed -i "s/_\${REDISPORT}.pid$/.pid/g" utils/redis_init_script

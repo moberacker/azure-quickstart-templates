@@ -37,6 +37,9 @@
     },
     "redisMaxMemPolicy": {
       "value": "allkeys-lru"
+    },
+    "redisMaxMem": {
+      "value": 6000000000
     }
   }
 }

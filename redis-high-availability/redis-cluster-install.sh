@@ -279,8 +279,8 @@ configure_redis()
 	#REDIS_MAX_MEMORY=$(expr $REDIS_MAX_MEMORY_TEMP - 10000000)
 	#echo "maxmemory ${REDIS_MAX_MEMORY}" >> redis.conf
 	
-	#sed -i "s/\${REDISPORT}.conf/redis.conf/g" utils/redis_init_script 
-	#sed -i "s/_\${REDISPORT}.pid/.pid/g" utils/redis_init_script
+	sed -i "s/\${REDISPORT}.conf$/redis.conf/g" utils/redis_init_script 
+	sed -i "s/_\${REDISPORT}.pid$/.pid/g" utils/redis_init_script
 	
 	# Configure the sentinel bits
 	echo "bind 0.0.0.0" >> sentinel.conf

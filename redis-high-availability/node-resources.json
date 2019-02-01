@@ -86,8 +86,8 @@
         "[concat('Microsoft.Network/networkInterfaces/', 'nicMember', parameters('machineSettings').machineIndex)]"
       ],
       "tags": { 
-	 "publicIP": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]",  	  
-	 "privateIP": "[reference(concat('nicMember', parameters('machineSettings').machineIndex)).ipConfigurations[0].properties.privateIPAddress]"  	  
+	 "publicIP": "[resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex)).IpAddress]",  	  
+	 "privateIP": "[concat('nicMember', parameters('machineSettings').machineIndex).ipConfigurations[0].properties.privateIPAddress]"  	  
       },
       "properties": {
         "availabilitySet": {
@@ -141,11 +141,11 @@
     "outputs": {
         "publicIP": {
             "type": "string",
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]"
+            "value": "[resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex)).IpAddress]"
         },
 	"privateIP": {
             "type": "string",
-            "value": "[reference(concat('nicMember', parameters('machineSettings').machineIndex)).ipConfigurations[0].properties.privateIPAddress]"
+            "value": "[concat('nicMember', parameters('machineSettings').machineIndex).ipConfigurations[0].properties.privateIPAddress]"
         }
     }
 }

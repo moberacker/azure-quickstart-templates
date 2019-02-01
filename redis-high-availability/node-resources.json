@@ -135,7 +135,6 @@
         "settings": {
           "fileUris": "[parameters('machineSettings').vmScripts]",
           "commandToExecute": "[concat(parameters('machineSettings').commandToExecute)]"
-          //"commandToExecute": "[concat(parameters('machineSettings').commandToExecute, if(equals(parameters('machineSettings').machineIndex,0), concat(' -z ', reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress), variables('empty_string')))]"
         }
       }
     }

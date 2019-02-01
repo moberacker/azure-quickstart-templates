@@ -137,7 +137,7 @@
     "outputs": {
         "publicIP": {
             "type": "string",
-            "value": "[resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex)).IpAddress]"
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat('pipMember', parameters('machineSettings').machineIndex))).IpAddress]"
         },
 	"privateIP": {
             "type": "string",

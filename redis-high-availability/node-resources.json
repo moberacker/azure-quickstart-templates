@@ -35,8 +35,7 @@
     }
   },
   "variables": {
-  	"empty_string": "",
-	"securityGroupName": "redisClusterNSG"
+  	"securityGroupName": "redisClusterNSG"
   },
   "resources": [
      {

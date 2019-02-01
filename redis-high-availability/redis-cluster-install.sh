@@ -294,6 +294,9 @@ configure_redis()
 	echo "logfile /var/log/redis-sentinel.log" >> sentinel.conf
 	echo "loglevel notice" >> sentinel.conf
 	echo "pidfile /var/run/redis-sentinel.pid" >> sentinel.conf
+	# Set the redis master password
+	echo "sentinel auth-pass mymaster ${REDIS_PASS}" >> sentinel.conf
+
 
 	# Create all essentials directories and copy files to the correct locations
 	mkdir /etc/redis
@@ -387,7 +390,7 @@ configure_sentinel()
 
 	# Patch the sentinel configuration file with a new master
 	sed -i "s/^sentinel monitor.*$/sentinel monitor mymaster ${MASTER_NODE_IP} ${REDIS_PORT} ${MASTER_NODE_COUNT}/g" /etc/redis/sentinel.conf
-
+	
 	# Make a writable log file
 	touch /var/log/redis-sentinel.log
 	chown redis:redis /var/log/redis-sentinel.log

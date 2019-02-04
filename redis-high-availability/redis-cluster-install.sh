@@ -285,7 +285,7 @@ configure_redis()
 	#echo "maxmemory ${REDIS_MAX_MEMORY}" >> redis.conf
 	echo "maxmemory ${REDIS_MAXMEM}" >> redis.conf
 	
-	sed "s|redis_\${REDISPORT}.conf|redis.conf|g" utils/redis_init_script
+	sed "s|\${REDISPORT}.conf|redis.conf|g" utils/redis_init_script
 	#sed "s|_\${REDISPORT}.pid|_\$REDISPORT.pid|g" utils/redis_init_script
 	sed "s|redis_\${REDISPORT}.pid|redis.pid|g" utils/redis_init_script
 	

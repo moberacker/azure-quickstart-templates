@@ -111,7 +111,8 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces',concat('nicMember', parameters('machineSettings').machineIndex))]"
             }
           ]
-        }
+        },
+	"enableAcceleratedNetworking": true 
       }
     },
     {

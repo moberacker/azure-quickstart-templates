@@ -280,6 +280,21 @@ configure_redis()
 	echo "requirepass ${REDIS_PASS}" >> redis.conf
 	echo "maxmemory-policy ${REDIS_MAXMEM_POLICY}" >> redis.conf
 	
+	#*****************************************************************************************************
+	# How to Configure Redis to Use Unix Socket Speed Boost
+	#*****************************************************************************************************
+	# We are going to make the redis user a member of the www-data group which Apache, nginx, php5-fpm and 
+	# php7.0-fpm run as by default on Debian and Ubuntu systems.
+	#sudo usermod -g www-data redis
+	# Create your redis folder that the unix socket will be in.
+	#sudo mkdir -p /var/run/redis/
+	# Set the permissions so the redis user and www-data group own it
+	#sudo chown -R redis:www-data /var/run/redis
+	# create a unix domain socket to listen on
+	#echo "unixsocket /var/run/redis/redis.sock" >> redis.conf
+	# set permissions for the socket
+	#echo "unixsocketperm 775" >> redis.conf
+	
 	#get_vm_memory REDIS_MAX_MEMORY_TEMP
 	#REDIS_MAX_MEMORY=$(expr $REDIS_MAX_MEMORY_TEMP - 10000000)
 	#echo "maxmemory ${REDIS_MAX_MEMORY}" >> redis.conf

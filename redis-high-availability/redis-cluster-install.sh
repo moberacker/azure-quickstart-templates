@@ -174,6 +174,10 @@ tune_network()
 {
 	log "Tuning the network configuration"
 	
+	sudo ifconfig eth0 txqueuelen 5000
+	echo "/sbin/ifconfig eth0 txqueuelen 5000" >> /etc/rc.local
+	
+	
 >/etc/sysctl.conf cat << EOF 
 
 	# Disable syncookies (syncookies are not RFC compliant and can use too muche resources)

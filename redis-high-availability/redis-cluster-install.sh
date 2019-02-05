@@ -459,8 +459,9 @@ configure_thp()
 	#issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, 
 	#and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
  
-  	sudo echo "never" > /sys/kernel/mm/transparent_hugepage/enabled
-	echo "sudo echo \"never\" > /sys/kernel/mm/transparent_hugepage/enabled" >> /etc/rc.local
+ 	#cp /sys/kernel/mm/transparent_hugepage/enabled /sys/kernel/mm/transparent_hugepage/enabled_bak
+  	sudo bash -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+	echo "sudo bash -c \"echo never > /sys/kernel/mm/transparent_hugepage/enabled\"" >> /etc/rc.local
 
 }
 

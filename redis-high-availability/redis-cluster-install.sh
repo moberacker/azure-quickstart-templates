@@ -472,7 +472,31 @@ configure_thp()
 }
 
 #############################################################################
+get_cpu_count() {
+    cat /proc/cpuinfo | grep -P '^processor\s+:' | wc -l
+}
 
+enable_rps(){
+	# Enable RPS on all interfaces (skip on ppc64le platforms) until there are less equal than 32 processors.
+	if [ "`uname -p`" != ppc64le -a `get_cpu_count` -le "32" ]; then
+	    for iface in `cd /sys/class/net; ls -1`; do
+		# skip loopback
+		if [ "$iface" = "lo" ]; then
+		    continue
+		fi
+		for queue in /sys/class/net/${iface}/queues/rx-*; do
+		    if [ -d ${queue} -a -w ${queue}/rps_cpus ]; then
+			# Some kernels won't accept a mask that is bigger than the
+			# number of cpus, so we calculate it here.
+			all_cpus_mask=$((2**`get_cpu_count` - 1))
+			printf "%x" $all_cpus_mask | sed -r ':L;s=\b([0-9a-f]+)([0-9a-f]{8})\b=\1,\2=g;t L' > ${queue}/rps_cpus
+		    fi
+		done
+	    done
+	fi
+}
+
+#############################################################################
 
 # Step1
 configure_thp

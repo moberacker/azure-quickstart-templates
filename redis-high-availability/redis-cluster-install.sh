@@ -163,7 +163,7 @@ tune_memory()
 	apt-get -y install hugepages
 
 	# Resolve a "Background save may fail under low memory condition." warning
-	sysctl vm.overcommit_memory=1
+	sudo sysctl vm.overcommit_memory=1
 
 	# Disable the Transparent Huge Pages (THP) support in the kernel
 	sudo hugeadm --thp-never

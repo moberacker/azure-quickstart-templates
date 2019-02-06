@@ -177,6 +177,8 @@ tune_network()
 	sudo ifconfig eth0 txqueuelen 5000
 	echo "/sbin/ifconfig eth0 txqueuelen 5000" >> /etc/rc.local
 	
+	sudo ulimit -n 524288
+	
 	
 >/etc/sysctl.conf cat << EOF 
 
@@ -286,6 +288,7 @@ configure_redis()
 	
 	#*****************************************************************************************************
 	# How to Configure Redis to Use Unix Socket Speed Boost
+	# if both client and server runs on the same box/vm
 	#*****************************************************************************************************
 	# We are going to make the redis user a member of the www-data group which Apache, nginx, php5-fpm and 
 	# php7.0-fpm run as by default on Debian and Ubuntu systems.
@@ -469,6 +472,7 @@ configure_thp()
 
 
 # Step1
+configure_thp
 tune_system
 tune_memory
 tune_network

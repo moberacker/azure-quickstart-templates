@@ -177,7 +177,7 @@ tune_network()
 	sudo ifconfig eth0 txqueuelen 5000
 	echo "/sbin/ifconfig eth0 txqueuelen 5000" >> /etc/rc.local
 	
-	sudo ulimit -n 524288
+	ulimit -n 524288
 	
 	
 >/etc/sysctl.conf cat << EOF 

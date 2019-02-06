@@ -245,6 +245,9 @@ tune_network()
 	net.core.rmem_max = 16777216
 	net.core.wmem_max = 16777216
 	net.core.netdev_max_backlog = 2500
+	
+	# Resolve a "Background save may fail under low memory condition." warning
+	vm.overcommit_memory=1
 
 	# Increase number of incoming connections
 	net.core.somaxconn = 65000
